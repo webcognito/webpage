@@ -3,12 +3,14 @@ package main
 import (
 	"fmt"
 	"net/http"
+	"text/template"
 
 	"github.com/julienschmidt/httprouter"
 )
 
 func Index(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
-	fmt.Fprint(w, "Welcome!\n")
+	t, _ := template.ParseFiles("index.html")
+	t.Execute(w, "WebCognito")
 }
 
 func Hello(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
